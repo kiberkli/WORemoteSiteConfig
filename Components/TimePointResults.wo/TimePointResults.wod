@@ -1,0 +1,14 @@
+TextStyles: ERXStyleSheet {
+	filename = "styles.css";
+}
+
+ErrorOnPage : WOString {
+	value = errorOnPage;
+	valueWhenEmpty = "None";
+}
+
+
+ShortResult : WOString {
+	value = shortResult;
+	valueWhenEmpty = "OK";
+}

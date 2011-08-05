@@ -1,0 +1,64 @@
+{
+    attributes = (
+        {allowsNull = N; name = id; prototypeName = id; }, 
+        {
+            allowsNull = N; 
+            columnName = idStoredSite; 
+            name = idStoredSite; 
+            prototypeName = id; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = instanceInterleave; 
+            name = instanceInterleave; 
+            prototypeName = intNumber; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = jsonString; 
+            name = jsonString; 
+            prototypeName = longText; 
+        }, 
+        {allowsNull = N; columnName = name; name = name; prototypeName = shortString; }
+    ); 
+    attributesUsedForLocking = (id); 
+    className = "com.dyned.woremotesiteconfig.eom.StoredApp"; 
+    classProperties = (
+        instanceInterleave, 
+        jsonString, 
+        name, 
+        storedInstanceHosts, 
+        storedSite, 
+        timePointApplications
+    ); 
+    externalName = StoredApp; 
+    fetchSpecificationDictionary = {}; 
+    name = StoredApp; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {
+            deleteRule = EODeleteRuleCascade; 
+            destination = StoredInstanceHost; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = idStoredApp; sourceAttribute = id; }); 
+            name = storedInstanceHosts; 
+        }, 
+        {
+            destination = StoredSite; 
+            isMandatory = Y; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = idStoredSite; }); 
+            name = storedSite; 
+        }, 
+        {
+            deleteRule = EODeleteRuleCascade; 
+            destination = TimePointApplication; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = idStoredApp; sourceAttribute = id; }); 
+            name = timePointApplications; 
+        }
+    ); 
+}

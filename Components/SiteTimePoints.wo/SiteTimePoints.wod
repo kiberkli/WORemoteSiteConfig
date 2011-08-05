@@ -1,0 +1,219 @@
+TextStyles: ERXStyleSheet {
+	filename = "styles.css";
+}
+
+SiteName : WOString {
+	value = storedSite.jmHost;
+}
+
+TimePoints : WORepetition {
+	list = timePoints;
+	item = timePointInList;
+}
+
+TimePointTitle : WOString {
+	value = timePointInList.title;
+}
+
+TimePointNotes : WOString {
+	value = timePointInList.notes;
+	valueWhenEmpty = "n/a";
+}
+
+CustomTableCell : WOGenericContainer {
+	elementName = "td";
+	rowspan = rowspanForApps;
+	style = "text-align: center";
+}
+
+TimePointApplications : WORepetition {
+	list = timePointInList.sortedTimePointApplications;
+	item = timePointApplicationInList;
+}
+
+TimePointApplication : WOString {
+	value = timePointApplicationInList.storedApp.name;
+}
+
+TimePointApplicationWeight : WOString {
+	value = timePointApplicationInList.instanceWeight;
+}
+
+NewTimePoint : WOForm {
+	action = addNewTimePoint;
+	multipleSubmit = true;
+}
+
+Title : WOTextField {
+	value = title;
+}
+
+AddNewTimePoint : WOSubmitButton {
+	action = addNewTimePoint;
+	value = "Add Time Point";
+}
+
+ShowTimePointInList : WOConditional {
+	condition = editTimePoint;
+	negate = true;
+}
+
+ShowFormForTimePointInList : WOConditional {
+	condition = editTimePoint;
+}
+
+TimePointForm : WOForm {
+	multipleSubmit = true;
+}
+
+TitleForEditing : WOTextField {
+	value = timePointForEditing.title;
+}
+
+NotesForEditing : WOText {
+	value = timePointForEditing.notes;
+	style = "height: 90%; width: 90%;";
+}
+
+SaveTimePointChange : WOSubmitButton {
+	action = saveTimePointChange;
+	value = "Save";
+	class = "standardButton";
+}
+
+CancelTimePointChange : WOSubmitButton {
+	action = cancelTimePointChange;
+	value = "Cancel";
+	class = "standardButton";
+}
+
+EditTimePointInList : WOHyperlink {
+	action = showFormForTimePointInList;
+	class = "Button";
+}
+
+DeleteTimePointInList : WOHyperlink {
+	action = deleteTimePoint;
+	class = "Button DeleteButton";
+}
+
+ErrorConditional : WOConditional {
+    condition = errorOnPage;
+}
+
+ErrorOnPage : WOString {
+	value = errorOnPage;
+	escapeHTML = false;
+}
+
+TimePointApplicationsForEditing : WORepetition {
+	list = timePointInList.sortedTimePointApplications;
+	item = timePointApplicationInList;
+}
+
+TimePointApplicationWeightField : WOTextField {
+	value = timePointApplicationInList.instanceWeight;
+	size = "3";
+	class = "numberField";
+}
+
+Hour : WOTextField {
+	value = hour;
+	numberformat = "00";
+	size = "2";
+	maxlength = "2";
+	class = "numberField";
+}
+
+Minute : WOTextField {
+	value = min;
+	numberformat = "00";
+	size = "2";
+	maxlength = "2";
+	class = "numberField";
+}
+
+TimePointHour : WOString {
+	value = timePointInList.hour;
+	numberformat = "00";
+}
+
+TimePointMin : WOString {
+	value = timePointInList.min;
+	numberformat = "00";
+}
+
+HourForEditing : WOTextField {
+	value = timePointForEditing.hour;
+	numberformat = "00";
+	size = "2";
+	class = "numberField";
+}
+
+MinForEditing : WOTextField {
+	value = timePointForEditing.min;
+	numberformat = "00";
+	size = "2";
+	class = "numberField";
+}
+
+TimePointReferenece : WOString {
+	value = timePointInList.reference;
+}
+
+TimePointForEditingReference : WOString {
+	value = timePointForEditing.reference;
+}
+
+MakeItSo : WOHyperlink {
+	action = makeItSo;
+	class = "Button";
+}
+
+MainPage : WOHyperlink {
+	action = selectAnotherApp;
+	class = "Button";
+	style = "width: 150px; margin-right: 3px;";
+}
+
+WeightBar : WOImage {
+	src = "WeightBarGreen.jpg";
+	style = "align: right";
+	align = "right";
+	width = timePointApplicationInList.instanceWeight;
+	height = "10";
+}
+
+ShowCrontableLink : WOHyperlink {
+	action = toggleShowCrontable;
+	class = "Button";
+	style = "width: 150px; margin-right: 3px;";
+}
+
+ShowCrontable : WOConditional {
+	condition = showCrontable;
+}
+
+CrontabList : WORepetition {
+	list = timePoints;
+	item = timePointInList;
+}
+
+CronTimePointInListMinute : WOString {
+	value = timePointInList.min;
+	numberformat = "00";
+}
+
+CronTimePointInListHour : WOString {
+	value = timePointInList.hour;
+	numberformat = "00";
+}
+
+CronDirectActionLink : WOString {
+	value = referenceDirectActionURL;
+}
+
+CurrentDateTime : WOString {
+	value = currentDateTime;
+	dateformat = "%H:%M %m/%d/%y";
+}

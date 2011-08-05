@@ -1,0 +1,130 @@
+TextStyles: ERXStyleSheet {
+	filename = "styles.css";
+}
+
+ErrorOnPage : WOString {
+	value = errorOnPage;
+	escapeHTML = false;
+}
+
+StoredSiteApps : WORepetition {
+	list = storedSiteItemInList.storedApps;
+	item = siteApplicationInList;
+}
+
+AppName : WOString {
+	value = siteApplicationInList.name;
+}
+
+SiteApplicationInstancesConfiguration : WOHyperlink {
+	action = siteApplicationInstancesConfiguration;
+	disabled = siteApplicationInList.notActive;
+}
+
+StoredSitesListing : WORepetition {
+	list = storedSiteList;
+	item = storedSiteItemInList;
+}
+
+StoreSiteItemJMHost : WOString {
+	value = storedSiteItemInList.jmHost;
+}
+
+StoredSiteItemName : WOString {
+	value = storedSiteItemInList.name;
+}
+
+RefreshAppsForSite : WOHyperlink {
+	action = refreshAppsForSite;
+	title = "Click to see active apps";
+	class = "Button";
+}
+
+DeleteStoredAppFromStore : WOHyperlink {
+	action = deleteStoredAppFromStore;
+}
+
+RemoveImage : WOImage {
+	filename = "delete.png";
+	class = "smallbutton";
+}
+
+ShowRemoveButton : WOConditional {
+	condition = siteApplicationInList.active; 
+	negate = true;
+}
+
+TimePoints : WOHyperlink {
+	action = siteTimePoints;
+	class = "Button";
+}
+
+StoredSiteEditFormHide : WOConditional {
+	condition = storedSiteForEditing;
+	negate = true;
+}
+
+
+StoredSiteEditFormShow : WOConditional {
+	condition = storedSiteForEditing;
+}
+
+AddStoredSite : WOSubmitButton {
+	action = addStoredSite;
+	value = "Add Host";
+}
+
+StoredSiteName : WOTextField {
+	value = storedSiteForEditing.name;
+}
+
+StoredSiteHost : WOTextField {
+	value = storedSiteForEditing.jmHost;
+	size = "30";
+}
+
+StoredSitePassword : WOPasswordField {
+	value = storedSiteForEditing.jmPassword;
+}
+
+StoredSitePort : WOTextField {
+	value = storedSiteForEditing.jmPort;
+	size = "5";
+}
+
+StoredSiteForm : WOForm {
+	multipleSubmit = true;
+}
+
+SaveStoredSite : WOSubmitButton {
+	action = saveStoredSite;
+	value = "Save";
+}
+
+CancelStoredSite : WOSubmitButton {
+	action = cancelStoredSite;
+	value ="Cancle";
+}
+
+EditStoredSite : WOHyperlink {
+	action = editStoredSite;
+	class = "Button";
+}
+
+NewHostName : WOTextField {
+	value = newHostName;
+	size = "30";
+}
+
+NewStoredSiteForm : WOForm {
+	action = addStoredSite;
+}
+
+DeleteStoredApp : WOHyperlink {
+	action = deleteStoredSite;
+	class = "Button DeleteButton";
+}
+
+SiteHostNameForDisplay : WOString {
+	value = storedSiteForEditing.jmHost;
+}

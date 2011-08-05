@@ -1,0 +1,40 @@
+{
+    attributes = (
+        {
+            allowsNull = N; 
+            columnName = hostName; 
+            name = hostName; 
+            prototypeName = shortString; 
+        }, 
+        {allowsNull = N; name = id; prototypeName = id; }, 
+        {
+            allowsNull = N; 
+            columnName = idStoredApp; 
+            name = idStoredApp; 
+            prototypeName = id; 
+        }, 
+        {
+            allowsNull = N; 
+            columnName = instances; 
+            name = instances; 
+            prototypeName = intNumber; 
+        }
+    ); 
+    attributesUsedForLocking = (id); 
+    className = "com.dyned.woremotesiteconfig.eom.StoredInstanceHost"; 
+    classProperties = (hostName, instances, storedApp); 
+    externalName = StoredInstanceHost; 
+    fetchSpecificationDictionary = {}; 
+    name = StoredInstanceHost; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {
+            destination = StoredApp; 
+            isMandatory = Y; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = idStoredApp; }); 
+            name = storedApp; 
+        }
+    ); 
+}

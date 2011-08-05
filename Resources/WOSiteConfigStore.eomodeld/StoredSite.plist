@@ -1,0 +1,48 @@
+{
+    attributes = (
+        {allowsNull = N; name = id; prototypeName = id; }, 
+        {
+            allowsNull = N; 
+            columnName = jmHost; 
+            name = jmHost; 
+            prototypeName = shortString; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = jmPassword; 
+            name = jmPassword; 
+            prototypeName = shortString; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = jmPort; 
+            name = jmPort; 
+            prototypeName = shortString; 
+        }, 
+        {allowsNull = Y; columnName = name; name = name; prototypeName = longText; }, 
+        {allowsNull = Y; columnName = notes; name = notes; prototypeName = longText; }
+    ); 
+    attributesUsedForLocking = (id); 
+    className = "com.dyned.woremotesiteconfig.eom.StoredSite"; 
+    classProperties = (jmHost, jmPassword, jmPort, name, notes, storedApps, timePoints); 
+    externalName = StoredSite; 
+    fetchSpecificationDictionary = {}; 
+    name = StoredSite; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {
+            destination = StoredApp; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = idStoredSite; sourceAttribute = id; }); 
+            name = storedApps; 
+        }, 
+        {
+            destination = TimePoint; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = idStoredSite; sourceAttribute = id; }); 
+            name = timePoints; 
+        }
+    ); 
+}

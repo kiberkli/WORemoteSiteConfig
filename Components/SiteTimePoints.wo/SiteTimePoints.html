@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>Time Points</title>
+<webobjects name="TextStyles"></webobjects>
+</head>
+<body>
+
+<div class="Box">
+
+<h3>Application Time Points for <webobject name = "SiteName"/></h3>
+
+<webobject name = "ErrorConditional"><p style="float: right"><em><webobject name = "ErrorOnPage"/></em></p></webobject>
+
+<table cellpadding="0" cellspacing="0" border="0">
+<tr>
+<th>Ref #</th>
+<th>Trigger Time</th>
+<th>Title</th>
+<th>Notes</th>
+<th colspan="2">&nbsp;</th>
+<th colspan="3">&nbsp;</th>
+</tr>
+
+<webobject name = "TimePoints">
+
+<webobject name = "ShowTimePointInList">
+<tr>
+<webobject name = "CustomTableCell"><webobject name = "TimePointReferenece"/></webobject>
+<webobject name = "CustomTableCell"><webobject name = "TimePointHour"/>:<webobject name = "TimePointMin"/></webobject>
+<webobject name = "CustomTableCell"><webobject name = "TimePointTitle"/></webobject>
+<webobject name = "CustomTableCell"><webobject name = "TimePointNotes"/></webobject>
+<td><b>Applications</b></td>
+<td style="text-align: right"><b>Weight</b></td>
+<webobject name = "CustomTableCell"><webobject name = "EditTimePointInList">Edit</webobject></webobject>
+<webobject name = "CustomTableCell"><webobject name = "MakeItSo">Make It So</webobject></webobject>
+<webobject name = "CustomTableCell"><webobject name = "DeleteTimePointInList">Delete</webobject></webobject>
+</tr>
+<webobject name = "TimePointApplications">
+<tr>
+<td width="250"><webobject name = "WeightBar"/><webobject name = "TimePointApplication"/></td>
+<td width="70" class="alignRight"><webobject name = "TimePointApplicationWeight"/>%</td>
+</tr>
+</webobject>
+</webobject> <!-- End ShowTimePointInList -->
+
+
+<webobject name = "ShowFormForTimePointInList">
+<webobject name = "TimePointForm">
+<tr class="form">
+<webobject name = "CustomTableCell"><webobject name = "TimePointForEditingReference"/></webobject>
+<webobject name = "CustomTableCell"><webobject name = "HourForEditing"/>:<webobject name = "MinForEditing"/></webobject>
+<webobject name = "CustomTableCell"><webobject name = "TitleForEditing"/></webobject>
+<webobject name = "CustomTableCell"><webobject name = "NotesForEditing"/></webobject>
+<td><b>Applications</b></td>
+<td style="text-align: right"><b>Weight</b></td>
+<webobject name = "CustomTableCell"><webobject name = "SaveTimePointChange"/></webobject>
+<webobject name = "CustomTableCell"><webobject name = "CancelTimePointChange"/></webobject>
+<webobject name = "CustomTableCell">&nbsp;</webobject>
+</tr>
+<webobject name = "TimePointApplicationsForEditing">
+<tr class="form">
+<td width="250"><webobject name = "TimePointApplication"/></td>
+<td width="70" class="alignRight"><webobject name = "TimePointApplicationWeightField"/>%</td>
+</tr>
+</webobject>
+</webobject>
+</webobject> <!-- End ShowFormForTimePointInList -->
+
+</webobject>
+</table>
+
+<p style="float: left;"><webobject name = "MainPage">Main Page</webobject></p>
+<p style="float: left"><webobject name = "ShowCrontableLink">Show/Hide Crontable</webobject></p>
+
+
+</div>
+
+
+<webobject name = "ShowCrontable">
+<div class="Box">
+
+<h3>Cron Table</h3>
+
+<textarea class="code" style="width: 95%; height: 150px">
+# The following curl commands trigger time points.
+# Generated : <webobject name = "CurrentDateTime"/>
+# For       : <webobject name = "SiteName"/>
+
+<webobject name = "CrontabList"><webobject name = "CronTimePointInListMinute"/> <webobject name = "CronTimePointInListHour"/> * * *		curl "<webobject name = "CronDirectActionLink"/>"
+</webobject>
+</textarea>
+
+</div>
+</webobject>
+
+<div class="Box">
+
+<webobject name = "NewTimePoint">
+<b>Add New Time Point</b><br>
+Title: <webobject name = "Title"/> Time: <webobject name = "Hour"/>h <webobject name = "Minute"/>m
+<webobject name = "AddNewTimePoint"/>
+</webobject>
+
+</div>
+
+</body>
+</html>

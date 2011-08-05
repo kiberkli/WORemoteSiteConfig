@@ -1,0 +1,43 @@
+{
+    EOModelVersion = "2.1"; 
+    adaptorName = JDBC; 
+    connectionDictionary = {
+        URL = "jdbc:mysql://localhost/WOSiteConfigStore?useUnicode=yes&characterEncoding=UTF-8"; 
+        driver = ""; 
+        password = ""; 
+        username = root; 
+    }; 
+    entities = (
+        {className = "com.dyned.woremotesiteconfig.eom.StoredApp"; name = StoredApp; }, 
+        {
+            className = "com.dyned.woremotesiteconfig.eom.StoredInstanceHost"; 
+            name = StoredInstanceHost; 
+        }, 
+        {
+            className = "com.dyned.woremotesiteconfig.eom.StoredSite"; 
+            name = StoredSite; 
+        }, 
+        {className = "com.dyned.woremotesiteconfig.eom.TimePoint"; name = TimePoint; }, 
+        {
+            className = "com.dyned.woremotesiteconfig.eom.TimePointApplication"; 
+            name = TimePointApplication; 
+        }
+    ); 
+    userInfo = {
+        "_EntityModeler" = {
+            activeDatabaseConfigName = Default; 
+            databaseConfigs = {
+                Default = {
+                    adaptorName = JDBC; 
+                    connectionDictionary = {
+                        URL = "jdbc:mysql://localhost/WOSiteConfigStore?useUnicode=yes&characterEncoding=UTF-8"; 
+                        driver = ""; 
+                        password = ""; 
+                        username = root; 
+                    }; 
+                    prototypeEntityName = EOJDBCMySQLPrototypes; 
+                }; 
+            }; 
+        }; 
+    }; 
+}

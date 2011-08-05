@@ -1,0 +1,115 @@
+TextStyles: ERXStyleSheet {
+	filename = "styles.css";
+}
+
+AppName : WOString {
+	value = siteApplication.name;
+}
+
+ErrorOnPage : WOString {
+	value = errorOnPage;
+	escapeHTML = false;
+}
+
+InstanceHostsList : WORepetition {
+	list = instanceHostsList;
+	item = instanceHostItemInList;
+}
+
+InstanceHost : WOString {
+	value = instanceHostItemInList.hostName;
+}
+
+InstancesOnThisHost : WOString {
+	value = instanceHostItemInList.instances;
+}
+
+ApplicationInstancesForm : WOForm {
+	multipleSubmit = true;
+	action = addFormDataToArray;
+}
+
+NewInstancesCount : WOTextField {
+	value = instances;
+	numberformat = "#";
+	size = "3";
+	class = "numberField";
+}
+
+AddFormDataToArray : WOSubmitButton {
+	action = addFormDataToArray;
+	value = "Add";
+	class = "standardButton";
+}
+
+SaveToDatabase : WOSubmitButton {
+	action = saveInstanceNodesToDatabase;
+	value = "Save To Database";
+	class = "standardButton";
+	title = "Saves to database only";
+}
+
+CommitInstanceNodesToSystem : WOSubmitButton {
+	action = commitInstanceNodesToSystem;
+	value = "Commit To Site";
+	class = "standardButton";
+	title = "Saves to database and sends configuration to site";
+}
+
+SiteHostsPopupButton : WOPopUpButton {
+	list = siteHostList;
+	item = siteHostItemInList;
+	selection = siteHostSelected;
+	displayString = siteHostItemInList.name;
+	noSelectionString = "Hosts...";
+}
+
+Interleave : WOTextField {
+	value = storedApp.instanceInterleave;	
+	numberformat = "#";
+	size = 3;
+	class = "numberField";
+}
+
+TotalInstances : WOString {
+	value = totalInstances;
+	numberformat = "#";
+}
+
+Site : WOString {
+	value = site.jmHost;
+}
+
+SelectAnotherApp : WOHyperlink {
+	action = selectAnotherApp;
+	class = "Button";
+	style = "width: 100px";
+}
+
+RemoveFromArray : WOHyperlink {
+	action = removeFromArray;
+	class = "Button DeleteButton";
+}
+
+StartImage : WOImage {
+	filename = "start.png";
+}
+
+StopImage : WOImage {
+	filename = "stop.png";
+}
+
+StartInstancesOnNode : WOHyperlink {
+	action = startInstancesOnNode;
+	class = "smallbutton";
+}
+
+StopInstancesOnNode : WOHyperlink {
+	action = stopInstancesOnNode;
+	class = "smallbutton";
+}
+
+RunningInstances : WOString {
+	value = runningInstancesForHost;
+	numberformat = "#";
+}

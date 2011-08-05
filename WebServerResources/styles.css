@@ -1,0 +1,203 @@
+body {
+	margin: 7px;
+}
+
+* {
+	color: black;
+	text-transform: none;
+	text-decoration: none;
+	text-overflow: clip;
+	letter-spacing: normal;
+	font-variant: normal;
+	font-style: normal;
+	font-weight: normal;
+	word-spacing: normal;
+	word-wrap: normal;
+	word-break: normal;
+	line-height: normal;
+	font-size: 12px;
+	font-family: "Lucida Grande", Verdana, Arial, sans-serif;
+}
+
+em {
+	background-color: #FFFF00;
+	color: black;
+	font-weight: bold;
+}
+
+b {
+	font-weight: bold;
+}
+
+p {
+	margin-bottom: 5px;
+	margin-top: 0px;
+}
+
+i {
+	font-style: italic;
+}
+
+a {
+	text-decoration: underline;
+	color: #3300ff;
+}
+
+tt {
+	font-family: "Andale Mono", Monospace;
+}
+
+tt.details {
+	font-weight: bold;
+	font-size: 140%;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+
+h3, p.status-message {
+	font-weight: bold;
+	font-size: 140%;
+}
+
+h4 {
+	font-weight: bold;
+	font-size: 120%;
+}
+
+h4.thin {
+	padding: 0px;
+	margin: 5px;
+}
+
+blockquote {
+	margin-top: 0px;
+	padding-top: 0px;
+}
+
+pre {
+	font-family: "Andale Mono", Monaco, "Courier New", Courier, monospace;
+}
+
+.grayText {
+	color: gray;
+}
+
+img {
+	padding: 0px;
+	margin: 0px;
+	border: 0px;
+}
+
+img.smallbutton {
+	margin-bottom: -2px;
+	margin-left: 1px;
+	margin-right: 1px;
+	border: 0px;
+	padding: 0px;
+}
+
+
+/* table ------------------------------------------------- */
+table {
+	border-top: 1px solid #666666;
+	border-left: 1px solid #666666;
+	width: 100%;
+	margin-bottom: 6px;
+}
+
+table tr {
+	background-color: #ffffff;
+}
+
+table tr th, table tr td {
+	text-align: left;
+	vertical-align: middle;
+	border-bottom: 1px solid #666666;
+	border-right: 1px solid #666666;
+	padding: 3px;
+}
+
+table tr th {
+	font-size: 14px;
+	font-weight: bold;
+	background-color: #cccccc;
+}
+
+table tr th.alignRight {
+	text-align: right;
+}
+
+table tr th.alignCenter, table tr td.alignCenter {
+	text-align: center;
+}
+
+table tr td {
+}
+
+table tr.form {
+	background-color: #FDFAC8;
+}
+
+table tr td.alignRight {
+	text-align: right;
+}
+
+table tr td.alignCenter {
+	text-align: center;
+}
+
+/* ------------------------------------------------------ */
+
+input.numberField {
+	text-align: right;
+}
+
+input.standardButton {
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	display: block;
+	padding: 4px 6px;
+	border: 1px solid #666;
+	text-decoration: none;
+	color: #fff;
+	font-size: 100%;
+	background-color: #999;
+	text-align: center;
+	width: 100%;
+}
+
+textarea.code {
+	font-size: 11px;
+	font-family: monospace;
+}
+
+/* Shamefully stolen from Wonder's JavaMonitor */
+
+.Box, #content-panel {
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	background-color: #eee;
+	padding: 10px 20px;
+	margin: 10px 0 20px 0;
+	overflow: hidden;
+	overflow-x: auto;
+}
+
+.Button {
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	display: block;
+	padding: 4px 6px;
+	border: 1px solid #666;
+	text-decoration: none;
+	color: #fff;
+	font-size: 100%;
+	background-color: #999;
+	text-align: center;
+}
+
+.DeleteButton {
+	background-color: red;
+}

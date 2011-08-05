@@ -1,0 +1,49 @@
+{
+    attributes = (
+        {allowsNull = N; name = id; prototypeName = id; }, 
+        {
+            allowsNull = N; 
+            columnName = idStoredApp; 
+            name = idStoredApp; 
+            prototypeName = id; 
+        }, 
+        {
+            allowsNull = N; 
+            columnName = idTimePoint; 
+            name = idTimePoint; 
+            prototypeName = id; 
+        }, 
+        {
+            allowsNull = N; 
+            columnName = instanceWeight; 
+            name = instanceWeight; 
+            prototypeName = intNumber; 
+        }
+    ); 
+    attributesUsedForLocking = (id); 
+    className = "com.dyned.woremotesiteconfig.eom.TimePointApplication"; 
+    classProperties = (instanceWeight, storedApp, timePoint); 
+    externalName = TimePointApplication; 
+    fetchSpecificationDictionary = {}; 
+    name = TimePointApplication; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {
+            destination = StoredApp; 
+            isMandatory = Y; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = idStoredApp; }); 
+            name = storedApp; 
+        }, 
+        {
+            deleteRule = EODeleteRuleCascade; 
+            destination = TimePoint; 
+            isMandatory = Y; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = idTimePoint; }); 
+            name = timePoint; 
+        }
+    ); 
+}

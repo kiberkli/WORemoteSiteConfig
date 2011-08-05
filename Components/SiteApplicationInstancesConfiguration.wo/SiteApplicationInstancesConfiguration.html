@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>Instances for <webobject name = "AppName"/></title>
+<webobjects name="TextStyles"></webobjects>
+</head>
+<body>
+
+<div class="Box">
+
+<h3>Instance Configuration for <webobject name = "AppName"/></h3>
+
+Site: <webobject name = "Site"/>
+</div>
+
+<div class="Box">
+
+<p style="float: right"><em><webobject name = "ErrorOnPage"/></em></p>
+
+<webobject name = "ApplicationInstancesForm">
+<table cellpadding="0" cellspacing="0" border="0">
+<tr>
+<th>Instance Nodes/Hosts</th>
+<th>Instances</th>
+<th>Running Instances</th>
+<th class="alignCenter">Start/Stop</th>
+<th>&nbsp;</th>
+</tr>
+<webobject name = "InstanceHostsList">
+<tr>
+<td><webobject name = "InstanceHost"/></td>
+<td class="alignRight"><webobject name = "InstancesOnThisHost"/></td>
+<td class="alignRight"><webobject name = "RunningInstances"/></td>
+<td class="alignCenter"><webobject name = "StartInstancesOnNode"><webobject name = "StartImage"/></webobject> <webobject name = "StopInstancesOnNode"><webobject name = "StopImage"/></webobject></td>
+<td><webobject name = "RemoveFromArray">Remove</webobject></td>
+</tr>
+</webobject>
+<tr>
+<th>&nbsp;</th>
+<th class="alignRight"><span style="float: left; padding-top: 3px;"><b>Total:</b></span><webobject name = "TotalInstances"/></th>
+<th colspan="3">&nbsp;</th>
+</tr>
+<tr>
+<tr>
+<td><webobject name = "SiteHostsPopupButton"/></td>
+<td class="alignRight"><b><webobject name = "NewInstancesCount"/></b></td>
+<td><webobject name = "AddFormDataToArray"/></td>
+<td colspan="2">&nbsp;</td>
+</tr>
+<td>&nbsp;</td>
+<td class="alignRight"><span style="float: left; padding-top: 5px;">Interleave:</span><webobject name = "Interleave"/></td>
+<td><webobject name = "SaveToDatabase"/></td>
+<td colspan="2"><webobject name = "CommitInstanceNodesToSystem"/></td>
+</tr>
+</table>
+</webobject>
+
+<webobject name = "SelectAnotherApp">Change App</webobject>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+<head>
+<title>Sites</title>
+<webobjects name="TextStyles"></webobjects>
+</head>
+<body>
+
+<div class="Box">
+
+<h3>Sites</h3>
+
+<p style="float: right"><em><webobject name = "ErrorOnPage"/></em></p>
+
+<table cellpadding="0" cellspacing="0" border="0">
+<tr>
+<th>Site</th>
+<th>JavaMonitor Host</th>
+<th>Applications</th>
+<th colspan="4">&nbsp;</th>
+</tr>
+<webobject name = "StoredSitesListing">
+<tr>
+<td style = "text-align: center"><webobject name = "StoredSiteItemName"/></td>
+<td style = "text-align: center"><webobject name = "StoreSiteItemJMHost"/></td>
+<td>
+<webobject name = "StoredSiteApps">
+<webobject name = "SiteApplicationInstancesConfiguration"><webobject name = "AppName"/></webobject>
+<webobject name = "ShowRemoveButton"><webobject name = "DeleteStoredAppFromStore"><webobject name = "RemoveImage"/></webobject></webobject><br>
+</webobject>
+</td>
+<td><webobject name = "RefreshAppsForSite">Refresh</webobject></td>
+<td><webobject name = "TimePoints">Time Points</webobject></td>
+<td><webobject name = "EditStoredSite">Edit</webobject></td>
+<td><webobject name = "DeleteStoredApp">Delete</webobject></td>
+</tr>
+</webobject>
+</table>
+
+</div>
+
+<div class="Box">
+<webobject name = "StoredSiteEditFormHide">
+<webobject name = "NewStoredSiteForm">
+<b>Add JavaMonitor Host: </b> <webobject name = "NewHostName"/> <webobject name = "AddStoredSite"/>
+<p>This host should be running JavaMonitor.</p>
+</webobject>
+</webobject>
+
+<webobject name = "StoredSiteEditFormShow">
+<webobject name = "StoredSiteForm">
+<b>Edit Details for <webobject name = "SiteHostNameForDisplay"/>:</b><br>
+Name: <webobject name = "StoredSiteName"/>
+Host: <webobject name = "StoredSiteHost"/>
+Password: <webobject name = "StoredSitePassword"/>
+Port: <webobject name = "StoredSitePort"/>
+<webobject name = "SaveStoredSite"/>
+<webobject name = "CancelStoredSite"/>
+</webobject>
+</webobject>
+</div>
+
+</body>
+</html>

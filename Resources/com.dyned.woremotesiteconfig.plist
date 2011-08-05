@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Disabled</key>
+	<true/>
+	<key>OnDemand</key>
+	<false/>
+	<key>UserName</key>
+	<string>appserver</string>
+	<key>GroupName</key>
+	<string>appserveradm</string>
+	<key>Label</key>
+	<string>com.dyned.woremotesiteconfig</string>
+	<key>Program</key>
+	<string>/Library/WebObjects/JavaApplications/WORemoteSiteConfig.woa/WORemoteSiteConfig</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>WORemoteSiteConfig</string>
+		<string>-WOPort</string>
+		<string>8081</string>
+		<string>-WOOutputPath</string>
+		<string>/Library/WebObjects/Logs/WORemoteSiteConfig.log</string>
+	</array>
+	<key>ServiceIPC</key>
+	<false/>
+</dict>
+</plist>
