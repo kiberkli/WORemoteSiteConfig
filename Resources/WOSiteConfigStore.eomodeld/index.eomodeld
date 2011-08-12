@@ -2,10 +2,10 @@
     EOModelVersion = "2.1"; 
     adaptorName = JDBC; 
     connectionDictionary = {
-        URL = "jdbc:mysql://localhost/WOSiteConfigStore?useUnicode=yes&characterEncoding=UTF-8"; 
+        URL = "jdbc:h2:file:/tmp/WORemoteSiteConfig"; 
         driver = ""; 
         password = ""; 
-        username = root; 
+        username = sa; 
     }; 
     entities = (
         {className = "com.dyned.woremotesiteconfig.eom.StoredApp"; name = StoredApp; }, 
@@ -30,12 +30,12 @@
                 Default = {
                     adaptorName = JDBC; 
                     connectionDictionary = {
-                        URL = "jdbc:mysql://localhost/WOSiteConfigStore?useUnicode=yes&characterEncoding=UTF-8"; 
+                        URL = "jdbc:h2:file:/tmp/WORemoteSiteConfig"; 
                         driver = ""; 
                         password = ""; 
-                        username = root; 
+                        username = sa; 
                     }; 
-                    prototypeEntityName = EOJDBCMySQLPrototypes; 
+                    prototypeEntityName = EOJDBCH2Prototypes; 
                 }; 
             }; 
         }; 
