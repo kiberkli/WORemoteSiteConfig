@@ -33,13 +33,15 @@ er.extensions.ERXEC.safeLocking=true
 er.extensions.ERXEC.useSharedEditingContext=false
 er.extensions.ERXEnterpriseObject.applyRestrictingQualifierOnInsert=true
 er.extensions.ERXEnterpriseObject.updateInverseRelationships=true
-#dbConnectURLGLOBAL=
-#dbConnectUserGLOBAL=
-#dbConnectPasswordGLOBAL=
+dbConnectURLGLOBAL= jdbc:h2:file:/tmp/WORemoteSiteConfig
+dbConnectUserGLOBAL=
+dbConnectPasswordGLOBAL=
+dbConnectDriverGLOBAL=org.h2.Driver
+dbConnectPluginGLOBAL=H2PlugIn
 
 # Migrations
-#er.migration.migrateAtStartup=true
-#er.migration.createTablesIfNecessary=true
+er.migration.migrateAtStartup=true
+er.migration.createTablesIfNecessary=true
 #er.migration.modelNames=YourModel
 
 # Misc Components
