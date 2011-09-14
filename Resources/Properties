@@ -14,7 +14,7 @@ jmDirectActionMatchString             =[JMDiractAction]
 jmRESTRouteMatchString                =[JMRESTROUTE]
 
 # List of local IP addresses:
-er.extensions.WOHostUtilities.localhostips=(10.0.0.1,10.0.0.2,10.0.0.3)
+#er.extensions.WOHostUtilities.localhostips=(10.0.0.1,10.0.0.2,10.0.0.3)
 
 # Background task page properties:
 er.coolcomponents.CCAjaxLongResponsePage.stylesheet.framework               = Application
@@ -33,7 +33,7 @@ er.extensions.ERXEC.safeLocking=true
 er.extensions.ERXEC.useSharedEditingContext=false
 er.extensions.ERXEnterpriseObject.applyRestrictingQualifierOnInsert=true
 er.extensions.ERXEnterpriseObject.updateInverseRelationships=true
-dbConnectURLGLOBAL= jdbc:h2:file:/tmp/WORemoteSiteConfig
+dbConnectURLGLOBAL= jdbc:h2:file:/Library/WebObjects/Configuration/WORemoteSiteConfig
 dbConnectUserGLOBAL=
 dbConnectPasswordGLOBAL=
 dbConnectDriverGLOBAL=org.h2.Driver

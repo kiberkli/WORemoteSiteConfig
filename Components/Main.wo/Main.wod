@@ -128,3 +128,9 @@ DeleteStoredApp : WOHyperlink {
 SiteHostNameForDisplay : WOString {
 	value = storedSiteForEditing.jmHost;
 }
+
+SiteMonitorLink : WOHyperlink {
+	href = storedSiteItemInList.monitorURL;
+	disabled = storedSiteItemInList.notAvailable;
+	target = "_blank";
+}

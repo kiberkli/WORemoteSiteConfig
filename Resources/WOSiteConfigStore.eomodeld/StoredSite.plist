@@ -31,6 +31,7 @@
     primaryKeyAttributes = (id); 
     relationships = (
         {
+            deleteRule = EODeleteRuleCascade; 
             destination = StoredApp; 
             isToMany = Y; 
             joinSemantic = EOInnerJoin; 
@@ -38,6 +39,7 @@
             name = storedApps; 
         }, 
         {
+            deleteRule = EODeleteRuleCascade; 
             destination = TimePoint; 
             isToMany = Y; 
             joinSemantic = EOInnerJoin; 

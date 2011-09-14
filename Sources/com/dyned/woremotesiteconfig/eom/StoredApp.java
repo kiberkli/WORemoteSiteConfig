@@ -34,6 +34,8 @@ package com.dyned.woremotesiteconfig.eom;
 
 import org.apache.log4j.Logger;
 
+import com.webobjects.eocontrol.EOEditingContext;
+
 public class StoredApp extends _StoredApp {
 	
 	private static Logger log = Logger.getLogger(StoredApp.class);
@@ -51,4 +53,16 @@ public class StoredApp extends _StoredApp {
 	public boolean notActive() {
 		return !active;
 	}
+
+	public void awakeFromInsertion(EOEditingContext ec) {
+		super.awakeFromInsertion(ec);
+		this.setInstanceInterleave(1);
+	}
+
+	public void awakeFromFetch(EOEditingContext ec) {
+		super.awakeFromFetch(ec);
+		if (this.instanceInterleave() == null || this.instanceInterleave().intValue() <= 0)
+			this.setInstanceInterleave(1);
+	}
+
 }

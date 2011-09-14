@@ -88,8 +88,10 @@ public class Site {
 
 		String theURLToGet = Application.jmRAURL;
 		theURLToGet = theURLToGet.replace(Application.jmHostMatchString, jmHost);
-		theURLToGet = theURLToGet.replace(Application.jmPortMatchString, jmPort);
-		theURLToGet = theURLToGet.replace(Application.jmPasswordMatchString, jmPassword);
+		if (this.jmPort() == null || this.jmPort().isEmpty()) 			theURLToGet = theURLToGet.replace(Application.jmPortMatchString, "80");
+		else 															theURLToGet = theURLToGet.replace(Application.jmPortMatchString, jmPort);
+		if (this.jmPassword() == null || this.jmPassword().isEmpty())	theURLToGet = theURLToGet.replace(Application.jmPasswordMatchString, "");
+		else															theURLToGet = theURLToGet.replace(Application.jmPasswordMatchString, jmPassword);
 		theURLToGet = theURLToGet.replace(Application.jmRESTRouteMatchString, Application.jmHOSTSROUTE+".json");
 
 		log.info("URL: " + theURLToGet);
@@ -99,6 +101,7 @@ public class Site {
 
 		log.debug("Results: " + jmResults);
 
+		if (jmResults != null && !jmResults.isEmpty()) {
 		JSONArray jsonHosts =  (JSONArray)JSONSerializer.toJSON(jmResults);
 		if (jsonHosts.isArray()) {
 			NSMutableArray<SiteHost> hostArray = new NSMutableArray<SiteHost>();
@@ -113,6 +116,7 @@ public class Site {
 			hosts = new NSMutableArray<SiteHost>(hostArray); 
 		}
 	}
+	}
 	
 	// --------------------------------------------------------------------------------
 
@@ -124,9 +128,11 @@ public class Site {
 		 */
 
 		String theURLToGet = Application.jmRAURL;
-		theURLToGet = theURLToGet.replace(Application.jmHostMatchString, this.jmHost());
-		theURLToGet = theURLToGet.replace(Application.jmPortMatchString, this.jmPort());
-		theURLToGet = theURLToGet.replace(Application.jmPasswordMatchString, this.jmPassword());
+		theURLToGet = theURLToGet.replace(Application.jmHostMatchString, jmHost());
+		if (this.jmPort() == null || this.jmPort().isEmpty()) 			theURLToGet = theURLToGet.replace(Application.jmPortMatchString, "80");
+		else 															theURLToGet = theURLToGet.replace(Application.jmPortMatchString, jmPort);
+		if (this.jmPassword() == null || this.jmPassword().isEmpty())	theURLToGet = theURLToGet.replace(Application.jmPasswordMatchString, "");
+		else															theURLToGet = theURLToGet.replace(Application.jmPasswordMatchString, jmPassword);
 		theURLToGet = theURLToGet.replace(Application.jmRESTRouteMatchString, Application.jmAPPROUTE+".json");
 
 		log.info("URL: " + theURLToGet);
@@ -136,6 +142,7 @@ public class Site {
 
 		log.debug("Results: " + jmResults);
 
+		if (jmResults != null && !jmResults.isEmpty()) {
 		JSONArray jsonApps =  (JSONArray)JSONSerializer.toJSON(jmResults);
 		if (jsonApps.isArray()) {
 			NSMutableArray<SiteApplication> appArray = new NSMutableArray<SiteApplication>();
@@ -150,6 +157,7 @@ public class Site {
 			log.info("Done");
 			applications = new NSMutableArray<SiteApplication>(appArray); 
 		}
+	}
 	}
 
 	// --------------------------------------------------------------------------------
@@ -174,8 +182,10 @@ public class Site {
 
 		String theURLToGet = Application.jmDAURL; 
 		theURLToGet = theURLToGet.replace(Application.jmHostMatchString, this.jmHost);
-		theURLToGet = theURLToGet.replace(Application.jmPortMatchString, this.jmPort);
-		theURLToGet = theURLToGet.replace(Application.jmPasswordMatchString, this.jmPassword);
+		if (this.jmPort() == null || this.jmPort().isEmpty()) 			theURLToGet = theURLToGet.replace(Application.jmPortMatchString, "80");
+		else 															theURLToGet = theURLToGet.replace(Application.jmPortMatchString, jmPort);
+		if (this.jmPassword() == null || this.jmPassword().isEmpty())	theURLToGet = theURLToGet.replace(Application.jmPasswordMatchString, "");
+		else															theURLToGet = theURLToGet.replace(Application.jmPasswordMatchString, jmPassword);
 		theURLToGet = theURLToGet.replace(Application.jmDirectActionMatchString, "info");
 		theURLToGet = theURLToGet + "type=app&name="+siteApplication.name();
 
@@ -186,6 +196,7 @@ public class Site {
 
 		log.debug("Results: " + jmResults);
 
+		if (jmResults != null && !jmResults.isEmpty()) {
 		JSONArray jsonInst =  (JSONArray)JSONSerializer.toJSON(jmResults);
 		if (jsonInst.isArray()) {
 			results = new NSMutableArray<SiteInstance>();
@@ -198,6 +209,8 @@ public class Site {
 
 		}
 		return results.immutableClone();
+		} else
+			return null;
 	}
 
 	// --------------------------------------------------------------------------------
@@ -221,9 +234,11 @@ public class Site {
 		boolean noError = true;
 
 		String theURLToGet = Application.jmRAURL; 
-		theURLToGet = theURLToGet.replace(Application.jmHostMatchString, this.jmHost);
-		theURLToGet = theURLToGet.replace(Application.jmPortMatchString, this.jmPort);
-		theURLToGet = theURLToGet.replace(Application.jmPasswordMatchString, this.jmPassword);
+		theURLToGet = theURLToGet.replace(Application.jmHostMatchString, jmHost);
+		if (this.jmPort() == null || this.jmPort().isEmpty()) 			theURLToGet = theURLToGet.replace(Application.jmPortMatchString, "80");
+		else 															theURLToGet = theURLToGet.replace(Application.jmPortMatchString, jmPort);
+		if (this.jmPassword() == null || this.jmPassword().isEmpty())	theURLToGet = theURLToGet.replace(Application.jmPasswordMatchString, "");
+		else															theURLToGet = theURLToGet.replace(Application.jmPasswordMatchString, jmPassword);
 		theURLToGet = theURLToGet.replace(Application.jmRESTRouteMatchString, Application.jmAPPROUTE+"/"+siteApplication.name()+"/addInstance");
 		theURLToGet = theURLToGet + "host="+siteInstance.host();
 
@@ -232,7 +247,10 @@ public class Site {
 		
 		log.debug("Results: " + jmResults);		
 
+		if (jmResults != null && !jmResults.isEmpty())
 		return noError;
+		else
+			return false;
 	}
 
 	// --------------------------------------------------------------------------------
@@ -293,9 +311,11 @@ public class Site {
 		log.info("... deleting");
 
 		theURLToGet = Application.jmRAURL; 
-		theURLToGet = theURLToGet.replace(Application.jmHostMatchString, this.jmHost);
-		theURLToGet = theURLToGet.replace(Application.jmPortMatchString, this.jmPort);
-		theURLToGet = theURLToGet.replace(Application.jmPasswordMatchString, this.jmPassword);
+		theURLToGet = theURLToGet.replace(Application.jmHostMatchString, jmHost);
+		if (this.jmPort() == null || this.jmPort().isEmpty()) 			theURLToGet = theURLToGet.replace(Application.jmPortMatchString, "80");
+		else 															theURLToGet = theURLToGet.replace(Application.jmPortMatchString, jmPort);
+		if (this.jmPassword() == null || this.jmPassword().isEmpty())	theURLToGet = theURLToGet.replace(Application.jmPasswordMatchString, "");
+		else															theURLToGet = theURLToGet.replace(Application.jmPasswordMatchString, jmPassword);
 		theURLToGet = theURLToGet.replace(Application.jmRESTRouteMatchString, Application.jmAPPROUTE+"/"+siteApplication.name()+"/deleteInstance");
 		theURLToGet = theURLToGet + "id="+siteInstance.id();
 
@@ -317,9 +337,11 @@ public class Site {
 		 */
 
 		String theURLToGet = Application.jmRAURL; 
-		theURLToGet = theURLToGet.replace(Application.jmHostMatchString, this.jmHost);
-		theURLToGet = theURLToGet.replace(Application.jmPortMatchString, this.jmPort);
-		theURLToGet = theURLToGet.replace(Application.jmPasswordMatchString, this.jmPassword);
+		theURLToGet = theURLToGet.replace(Application.jmHostMatchString, jmHost);
+		if (this.jmPort() == null || this.jmPort().isEmpty()) 			theURLToGet = theURLToGet.replace(Application.jmPortMatchString, "80");
+		else 															theURLToGet = theURLToGet.replace(Application.jmPortMatchString, jmPort);
+		if (this.jmPassword() == null || this.jmPassword().isEmpty())	theURLToGet = theURLToGet.replace(Application.jmPasswordMatchString, "");
+		else															theURLToGet = theURLToGet.replace(Application.jmPasswordMatchString, jmPassword);
 		theURLToGet = theURLToGet.replace(Application.jmRESTRouteMatchString, Application.jmHOSTSROUTE+".json");
 
 		String postData = newHost.jsonString();
@@ -437,9 +459,11 @@ public class Site {
 		boolean noError = true;
 
 		String theURLToGet = Application.jmDAURL; 
-		theURLToGet = theURLToGet.replace(Application.jmHostMatchString, this.jmHost);
-		theURLToGet = theURLToGet.replace(Application.jmPortMatchString, this.jmPort);
-		theURLToGet = theURLToGet.replace(Application.jmPasswordMatchString, this.jmPassword);
+		theURLToGet = theURLToGet.replace(Application.jmHostMatchString, jmHost);
+		if (this.jmPort() == null || this.jmPort().isEmpty()) 			theURLToGet = theURLToGet.replace(Application.jmPortMatchString, "80");
+		else 															theURLToGet = theURLToGet.replace(Application.jmPortMatchString, jmPort);
+		if (this.jmPassword() == null || this.jmPassword().isEmpty())	theURLToGet = theURLToGet.replace(Application.jmPasswordMatchString, "");
+		else															theURLToGet = theURLToGet.replace(Application.jmPasswordMatchString, jmPassword);
 		theURLToGet = theURLToGet.replace(Application.jmDirectActionMatchString, directAction);
 		if (instanceNumber == 0)
 			theURLToGet = theURLToGet + "type=app&name="+siteApplication.name();
@@ -508,6 +532,7 @@ public class Site {
 	}
 
 	public NSArray<SiteHost> hosts() {
-		return hosts.immutableClone();
+		if (hosts != null) return hosts.immutableClone();
+		else return null;
 	}
 }

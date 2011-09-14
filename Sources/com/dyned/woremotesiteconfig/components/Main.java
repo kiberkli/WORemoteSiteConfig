@@ -54,12 +54,10 @@ public class Main extends ERXComponent {
 	public String errorOnPage = null;
 	public String newHostName = null;
 		
-	//public NSArray<StoredSite> storedSiteList = null;
 	public StoredSite storedSiteItemInList = null;
 	public StoredSite storedSiteForEditing = null;
 	public StoredApp siteApplicationInList = null;
 
-	
 	public Main(WOContext context) {
 		super(context);	
 		session = ((Session)session());
@@ -68,8 +66,9 @@ public class Main extends ERXComponent {
 	}
 	
 	public void awake() {
-		super.sleep();
+		super.awake();
 		newHostName = "";
+		errorOnPage = "";
 	}
 	
 	public NSArray<StoredSite> storedSiteList() {
@@ -83,10 +82,13 @@ public class Main extends ERXComponent {
 	}
 	
 	public SiteTimePoints siteTimePoints() {
+		if (storedSiteItemInList.available()) {
 		SiteTimePoints nextPage = (SiteTimePoints)pageWithName(SiteTimePoints.class);
 		nextPage.setStoredSite(storedSiteItemInList);
 		session.setStoredSite(storedSiteItemInList);
 		return nextPage;
+		} else
+			return null;
 	}
 	
 	public Main refreshAppsForSite() {
@@ -98,6 +100,10 @@ public class Main extends ERXComponent {
     		errorOnPage = "Failed to refresh apps: "+ex.getMessage();
 			log.error(errorOnPage);
 			ex.printStackTrace();
+		}
+		if (storedSiteItemInList.notAvailable()) {
+			log.error("Refresh failed. Site may not be available.");
+			errorOnPage = "Site '"+storedSiteItemInList.name()+"' may not be available.";
 		}
 		return null;
 	}

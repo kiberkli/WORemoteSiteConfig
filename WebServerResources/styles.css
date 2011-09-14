@@ -117,6 +117,7 @@ table tr th, table tr td {
 	border-bottom: 1px solid #666666;
 	border-right: 1px solid #666666;
 	padding: 3px;
+	padding-left: 6px;
 }
 
 table tr th {

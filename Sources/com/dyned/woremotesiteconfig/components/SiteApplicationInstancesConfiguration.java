@@ -188,6 +188,9 @@ public class SiteApplicationInstancesConfiguration extends ERXComponent {
 		if (instances != null && instances.intValue() > 0) {
 			StoredInstanceHost newInstanceHost = StoredInstanceHost.createStoredInstanceHost(ec, hostName, instances, storedApp);
 			_instanceHostList.addObject(newInstanceHost);
+		} else {
+			errorOnPage = "The number of instances for a node can not be 0.";
+			log.error(errorOnPage);
 		}
 		return null;
 	}
@@ -327,6 +330,9 @@ public class SiteApplicationInstancesConfiguration extends ERXComponent {
 		if (applicationInstances == null)
 			applicationInstances = site.getSiteInstancesForSiteApplication(siteApplication);
 
+		if (applicationInstances == null)
+			return -1;
+		
 		String host = instanceHostItemInList.hostName();
 		int count = 0;
 

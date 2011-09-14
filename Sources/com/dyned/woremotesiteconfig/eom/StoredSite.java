@@ -43,6 +43,8 @@ import org.apache.log4j.Logger;
 import com.dyned.woremotesiteconfig.Application;
 import com.dyned.woremotesiteconfig.WebPageFromURL;
 import com.dyned.woremotesiteconfig.javamonitor.SiteApplication;
+import com.webobjects.eocontrol.EOEditingContext;
+import com.webobjects.eocontrol.EOQualifier;
 import com.webobjects.eocontrol.EOSortOrdering;
 import com.webobjects.foundation.NSArray;
 import com.webobjects.foundation.NSMutableArray;
@@ -50,6 +52,28 @@ import com.webobjects.foundation.NSMutableArray;
 public class StoredSite extends _StoredSite {
 	
 	private static Logger log = Logger.getLogger(StoredSite.class);
+	
+	private boolean _available;
+	
+	public void awakeFromInsertion(EOEditingContext ec) {
+		super.awakeFromInsertion(ec);
+		this.setJmPort("80");
+		this.setJmPassword("");
+		this._available = true;
+	}
+
+	public void awakeFromFetch(EOEditingContext ec) {
+		super.awakeFromFetch(ec);
+		this._available = true;
+	}
+	
+	public boolean available() {
+		return _available;
+	}
+	
+	public boolean notAvailable() {
+		return !(_available);
+	}
 	
 	public NSArray<TimePoint> sortedTimePoints() {
 		NSMutableArray<EOSortOrdering> sortOrderings = new NSMutableArray<EOSortOrdering>();
@@ -59,14 +83,12 @@ public class StoredSite extends _StoredSite {
 	}
 	
 	public void refreshApps() {
-		/*
-		 * curl -X GET http://monitorhost:port/cgi-bin/WebObjects/JavaMonitor.woa/ra/mApplications.json
-		 */
-
 		String theURLToGet = Application.jmRAURL;
 		theURLToGet = theURLToGet.replace(Application.jmHostMatchString, this.jmHost());
-		theURLToGet = theURLToGet.replace(Application.jmPortMatchString, this.jmPort());
-		theURLToGet = theURLToGet.replace(Application.jmPasswordMatchString, this.jmPassword());
+		if (this.jmPort() == null || this.jmPort().isEmpty()) 			theURLToGet = theURLToGet.replace(Application.jmPortMatchString, "80");
+		else 															theURLToGet = theURLToGet.replace(Application.jmPortMatchString, this.jmPort());
+		if (this.jmPassword() == null || this.jmPassword().isEmpty())	theURLToGet = theURLToGet.replace(Application.jmPasswordMatchString, "");
+		else															theURLToGet = theURLToGet.replace(Application.jmPasswordMatchString, this.jmPassword());
 		theURLToGet = theURLToGet.replace(Application.jmRESTRouteMatchString, Application.jmAPPROUTE+".json");
 
 		WebPageFromURL appsPage = new WebPageFromURL(theURLToGet, "GET", null);
@@ -74,8 +96,10 @@ public class StoredSite extends _StoredSite {
 
 		log.debug("Results: " + jmResults);
 		
-		if (jmResults == null)
+		if (jmResults == null) {
+			this._available = false;
 			return;
+		}
 
 		JSONArray jsonApps =  (JSONArray)JSONSerializer.toJSON(jmResults);
 		if (jsonApps.isArray()) {
@@ -88,7 +112,7 @@ public class StoredSite extends _StoredSite {
 
 				StoredApp app = null;
 				try {
-					app = StoredApp.fetchStoredApp(this.editingContext(), StoredApp.NAME_KEY, siteApplication.name());
+					app = this.storedApp(siteApplication.name());
 					if (app == null) {
 						app = StoredApp.createStoredApp(this.editingContext(), siteApplication.name(), this);
 						this.addToStoredAppsRelationship(app);
@@ -99,6 +123,31 @@ public class StoredSite extends _StoredSite {
 				}
 			}
 		}
+	}
 
+	public String monitorURL() {
+		String urlString = new String("http://"+this.jmHost());
+		if (this.jmPort() == null || this.jmPort().isEmpty())
+			urlString = urlString + "/";
+		else
+			urlString = urlString + ":"+this.jmPort()+"/";
+		return urlString;
+	}
+	
+	public StoredApp storedApp(String name) {
+		EOQualifier qualifier = EOQualifier.qualifierWithQualifierFormat(StoredApp.NAME_KEY+" = %s", new NSArray<String>(name));
+		NSArray<StoredApp> apps = this.storedApps(qualifier, true);
+		int count = apps.count();
+		if (count == 0) {
+			return null;
+		} else if (count > 1) {
+			throw new IllegalStateException("There was more then one StoredApp that matched the qualifier '"+qualifier+"'.'");
+		}
+		return apps.objectAtIndex(0);
 	}
 }
+
+
+/*
+ * curl -X GET http://monitorhost:port/cgi-bin/WebObjects/JavaMonitor.woa/ra/mApplications.json
+ */
