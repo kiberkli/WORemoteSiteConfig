@@ -1,4 +1,4 @@
-// $LastChangedRevision: 5810 $ DO NOT EDIT.  Make changes to StoredApp.java instead.
+// $LastChangedRevision$ DO NOT EDIT.  Make changes to StoredApp.java instead.
 package com.dyned.woremotesiteconfig.eom;
 
 import com.webobjects.eoaccess.*;
@@ -16,6 +16,11 @@ public abstract class _StoredApp extends  EOGenericRecord {
 	public static final String INSTANCE_INTERLEAVE_KEY = "instanceInterleave";
 	public static final String JSON_STRING_KEY = "jsonString";
 	public static final String NAME_KEY = "name";
+	public static final String SCHEDULE_BEGIN_HOUR_KEY = "scheduleBeginHour";
+	public static final String SCHEDULE_END_HOUR_KEY = "scheduleEndHour";
+	public static final String SCHEDULE_HOURLY_INTERVAL_KEY = "scheduleHourlyInterval";
+	public static final String SCHEDULE_TYPE_KEY = "scheduleType";
+	public static final String SCHEDULE_WEEK_DAY_KEY = "scheduleWeekDay";
 
 	// Relationships
 	public static final String STORED_INSTANCE_HOSTS_KEY = "storedInstanceHosts";
@@ -63,6 +68,61 @@ public abstract class _StoredApp extends  EOGenericRecord {
     	_StoredApp.LOG.debug( "updating name from " + name() + " to " + value);
     }
     takeStoredValueForKey(value, "name");
+  }
+
+  public String scheduleBeginHour() {
+    return (String) storedValueForKey("scheduleBeginHour");
+  }
+
+  public void setScheduleBeginHour(String value) {
+    if (_StoredApp.LOG.isDebugEnabled()) {
+    	_StoredApp.LOG.debug( "updating scheduleBeginHour from " + scheduleBeginHour() + " to " + value);
+    }
+    takeStoredValueForKey(value, "scheduleBeginHour");
+  }
+
+  public String scheduleEndHour() {
+    return (String) storedValueForKey("scheduleEndHour");
+  }
+
+  public void setScheduleEndHour(String value) {
+    if (_StoredApp.LOG.isDebugEnabled()) {
+    	_StoredApp.LOG.debug( "updating scheduleEndHour from " + scheduleEndHour() + " to " + value);
+    }
+    takeStoredValueForKey(value, "scheduleEndHour");
+  }
+
+  public String scheduleHourlyInterval() {
+    return (String) storedValueForKey("scheduleHourlyInterval");
+  }
+
+  public void setScheduleHourlyInterval(String value) {
+    if (_StoredApp.LOG.isDebugEnabled()) {
+    	_StoredApp.LOG.debug( "updating scheduleHourlyInterval from " + scheduleHourlyInterval() + " to " + value);
+    }
+    takeStoredValueForKey(value, "scheduleHourlyInterval");
+  }
+
+  public String scheduleType() {
+    return (String) storedValueForKey("scheduleType");
+  }
+
+  public void setScheduleType(String value) {
+    if (_StoredApp.LOG.isDebugEnabled()) {
+    	_StoredApp.LOG.debug( "updating scheduleType from " + scheduleType() + " to " + value);
+    }
+    takeStoredValueForKey(value, "scheduleType");
+  }
+
+  public String scheduleWeekDay() {
+    return (String) storedValueForKey("scheduleWeekDay");
+  }
+
+  public void setScheduleWeekDay(String value) {
+    if (_StoredApp.LOG.isDebugEnabled()) {
+    	_StoredApp.LOG.debug( "updating scheduleWeekDay from " + scheduleWeekDay() + " to " + value);
+    }
+    takeStoredValueForKey(value, "scheduleWeekDay");
   }
 
   public com.dyned.woremotesiteconfig.eom.StoredSite storedSite() {

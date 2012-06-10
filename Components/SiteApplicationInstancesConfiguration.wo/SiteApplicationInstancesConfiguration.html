@@ -14,20 +14,22 @@
 <h3>Instance Configuration for <webobject name = "AppName"/></h3>
 
 Site: <webobject name = "Site"/>
-</div>
-
-<div class="Box">
 
 <p style="float: right"><em><webobject name = "ErrorOnPage"/></em>&nbsp;</p>
 
+</div>
+
 <webobject name = "ApplicationInstancesForm">
-<table cellpadding="0" cellspacing="0" border="0">
+
+<div class="Box">
+
+<table cellpadding="0" cellspacing="0" border="0" width="99%">
 <tr>
-<th>Instance Nodes/Hosts</th>
-<th>Instances</th>
-<th>Running Instances</th>
-<th class="alignCenter">Start/Stop</th>
-<th>&nbsp;</th>
+<th width="23%">Instance Nodes/Hosts</th>
+<th width="23%">Instances</th>
+<th width="23%"h>Running Instances</th>
+<th width="15%" class="alignCenter">Start/Stop</th>
+<th width="15%">&nbsp;</th>
 </tr>
 <webobject name = "InstanceHostsList">
 <tr>
@@ -35,31 +37,50 @@ Site: <webobject name = "Site"/>
 <td class="alignRight"><webobject name = "InstancesOnThisHost"/></td>
 <td class="alignRight"><webobject name = "RunningInstances"/></td>
 <td class="alignCenter"><webobject name = "StartInstancesOnNode"><webobject name = "StartImage"/></webobject> <webobject name = "StopInstancesOnNode"><webobject name = "StopImage"/></webobject></td>
-<td><webobject name = "RemoveFromArray">Remove</webobject></td>
+<td class="alignCenter"><webobject name = "RemoveFromArray">Remove</webobject></td>
 </tr>
 </webobject>
 <tr>
 <th>&nbsp;</th>
 <th class="alignRight"><span style="float: left; padding-top: 3px;"><b>Total:</b></span><webobject name = "TotalInstances"/></th>
-<th colspan="3">&nbsp;</th>
+<th class="alignRight"><span style="float: left; padding-top: 5px;">Interleave:</span><webobject name = "Interleave"/></th>
+<th colspan="2">&nbsp;</th>
 </tr>
-<tr>
 <tr>
 <td><webobject name = "SiteHostsPopupButton"/></td>
-<td class="alignRight"><b><webobject name = "NewInstancesCount"/></b></td>
-<td><webobject name = "AddFormDataToArray"/></td>
-<td colspan="2">&nbsp;</td>
-</tr>
-<td>&nbsp;</td>
-<td class="alignRight"><span style="float: left; padding-top: 5px;">Interleave:</span><webobject name = "Interleave"/></td>
-<td><webobject name = "SaveToDatabase"/></td>
-<td colspan="2"><webobject name = "CommitInstanceNodesToSystem"/></td>
+<td class="alignRight"><b> Instances to add: <webobject name = "NewInstancesCount"/></b></td>
+<td >&nbsp;</td>
+<td class="alignCenter"><webobject name = "AddFormDataToArray"/></td>
+<td class="alignCenter"><webobject name = "CommitInstanceNodesToSystem"/></td>
 </tr>
 </table>
-</webobject>
 
+</div>
+
+<div class="Box">
+
+<table cellpadding="0" cellspacing="0" border="0" width="99%">
+<tr>
+<th colspan="5">Instance Schedule</th>
+</tr>
+<tr>
+<td width="23%" class="alignCenter">Schedule Window: <webobject name = "ScheduleBegin"/>:00 - <webobject name = "ScheduleEnd"/>:00</td>
+<td width="23%"><webobject name = "ScheduleTypeHourly"/> Every <webobject name = "IntervalsPopup"/>hours</td>
+<td width="23%"><webobject name = "ScheduleTypeWeekly"/> Every <webobject name = "DaysOfTheWeek"/></td>
+<td width="15%"><webobject name = "ScheduleTypeDaily"/> Daily</td>
+<td width="15%" class="alignCenter"><webobject name = "ApplyScheduleToSystem"/></td>
+</tr>
+</table>
+
+</div>
+
+<div class="Box">
+<p style="float: right; white-space:nowrap;"><webobject name = "SaveToDatabase"/>&nbsp;</p>
 <webobject name = "SelectAnotherApp">Change App</webobject>
 </div>
+
+</webobject>
+
 
 </body>
 </html>

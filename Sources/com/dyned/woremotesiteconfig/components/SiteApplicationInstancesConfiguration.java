@@ -81,6 +81,17 @@ public class SiteApplicationInstancesConfiguration extends ERXComponent {
 	public NSArray<SiteInstance> applicationInstances;
 	
 	public Integer instances = null;
+	
+
+	public NSArray<String> daysOfWeek = new NSArray<String>("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Staturday");
+	public String dayOfWeekItemInlist;
+
+	public NSArray<String> hoursOfDay = new NSArray<String>("00", "01", "02", "03", "04", "05", "06", "07", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23");
+	public String hourOfDayItemInList1;
+	public String hourOfDayItemInList2;
+
+	public NSArray<String> intervals = new NSArray<String>("1", "2", "3", "4", "6", "8", "12");
+	public String intervalItemInList;
 
 	public SiteApplicationInstancesConfiguration(WOContext context) {
 		super(context);
@@ -113,6 +124,18 @@ public class SiteApplicationInstancesConfiguration extends ERXComponent {
 			
 			site = new Site(storedSite.jmHost(), storedSite.jmPort(), storedSite.jmPassword(), storedSite);
 			siteHostList = site.hosts();
+		}
+	}
+	
+	// --------------------------------------------------------------------------------
+
+	public void applyScheduleToSystem() {
+		int weekDay = daysOfWeek.indexOf(storedApp.scheduleWeekDay());
+		if (site.sendScheduleForApplicationInstances(siteApplication, storedApp.scheduleBeginHour(), storedApp.scheduleEndHour(), weekDay, storedApp.scheduleHourlyInterval(), storedApp.scheduleType())) {
+			log.info("Sent schedule to site.");
+		} else {
+			errorOnPage = "Sending schedule to site failed.";
+			log.error(errorOnPage);
 		}
 	}
 	
@@ -215,25 +238,22 @@ public class SiteApplicationInstancesConfiguration extends ERXComponent {
 		return null;
 	}
 
+	// --------------------------------------------------------------------------------
+
 	public WOActionResults commitInstanceNodesToSystem() {
-		
-		if (_saveInstanceNodesToDatabase()) {
-			
-			if (inBackground) {
-				Runnable task = new SendNewInstances(site, siteApplication, _arrayOfInstances());
 
-				CCAjaxLongResponsePage nextPage = pageWithName(CCAjaxLongResponsePage.class);
-				nextPage.setTask(task);
+		if (inBackground) {
+			Runnable task = new SendNewInstances(site, siteApplication, _arrayOfInstances());
 
-				return nextPage;
-			} else {
-				boolean noError = _sendNewBatchInstances();
-				if (!noError)
-					errorOnPage = "Some or all instances where not updated or this process was interrupted, please try again."; //
-			}
-			
-		} else 
-			errorOnPage = "Unable to save changes to database.";
+			CCAjaxLongResponsePage nextPage = pageWithName(CCAjaxLongResponsePage.class);
+			nextPage.setTask(task);
+
+			return nextPage;
+		} else {
+			boolean noError = _sendNewBatchInstances();
+			if (!noError)
+				errorOnPage = "Some or all instances where not updated or this process was interrupted, please try again."; //
+		}
 
 		return null;
 	}

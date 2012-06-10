@@ -44,7 +44,7 @@ AddFormDataToArray : WOSubmitButton {
 
 SaveToDatabase : WOSubmitButton {
 	action = saveInstanceNodesToDatabase;
-	value = "Save To Database";
+	value = "Save";
 	class = "standardButton";
 	title = "Saves to database only";
 }
@@ -83,7 +83,6 @@ Site : WOString {
 SelectAnotherApp : WOHyperlink {
 	action = selectAnotherApp;
 	class = "Button";
-	style = "width: 100px";
 }
 
 RemoveFromArray : WOHyperlink {
@@ -112,4 +111,56 @@ StopInstancesOnNode : WOHyperlink {
 RunningInstances : WOString {
 	value = runningInstancesForHost;
 	numberformat = "#";
+}
+
+IntervalsPopup : WOPopUpButton {
+	list = intervals;
+	item = intervalItemInList;
+	selection = storedApp.scheduleHourlyInterval; 
+}
+
+ScheduleBegin : WOPopUpButton {
+	list = hoursOfDay;
+	item = hourOfDayItemInList1;
+	selection = storedApp.scheduleBeginHour; 
+}
+
+ScheduleEnd : WOPopUpButton {
+	list = hoursOfDay;
+	item = hourOfDayItemInList1;
+	selection = storedApp.scheduleEndHour; 
+}
+
+DaysOfTheWeek : WOPopUpButton {
+	list = daysOfWeek;
+	item = dayOfWeekItemInlist;
+	selection = storedApp.scheduleWeekDay; 
+}
+
+ScheduleTypeHourly : WORadioButton {
+	name = "ScheduleType";
+	selection = storedApp.scheduleType;  
+	value = "HOURLY";
+}
+
+ScheduleTypeWeekly : WORadioButton {
+	name = "ScheduleType";
+	selection = storedApp.scheduleType;  
+	value = "WEEKLY";
+}
+
+ScheduleTypeDaily : WORadioButton {
+	name = "ScheduleType";
+	selection = storedApp.scheduleType;  
+	value = "DAILY";
+}
+
+ApplyScheduleToSystem : WOSubmitButton {
+	value = "Commit To Site";
+	action = applyScheduleToSystem;
+	class = "standardButton";
+}
+
+ScheduleForm : WOForm {
+	multipleSubmit = true;
 }

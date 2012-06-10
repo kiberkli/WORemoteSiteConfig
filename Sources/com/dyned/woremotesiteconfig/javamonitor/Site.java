@@ -42,6 +42,7 @@ import org.apache.log4j.Logger;
 
 import com.dyned.woremotesiteconfig.Application;
 import com.dyned.woremotesiteconfig.WebPageFromURL;
+import com.dyned.woremotesiteconfig.eom.StoredApp;
 import com.dyned.woremotesiteconfig.eom.StoredSite;
 import com.webobjects.eocontrol.EOEditingContext;
 import com.webobjects.eocontrol.EOGlobalID;
@@ -486,6 +487,97 @@ public class Site {
 
 	// --------------------------------------------------------------------------------
 
+	public boolean sendScheduleForApplicationInstances(SiteApplication siteApplication, String beginHour, String endHour, int weekDay, String hourlyInterval, String type) {
+		log.debug("Type: "+type+" - Begin: "+beginHour+"- End: "+endHour+"- Day: "+weekDay+"- Hourly interval: "+hourlyInterval);
+
+		boolean noError = true;
+
+		if (_sendScheduleTypeForApplicationInstances(siteApplication, type)) {
+			if ("DAILY".equals(type))
+				noError = _sendSchduleRangeForApplicationInstances(siteApplication, "dailyScheduleRange", beginHour, endHour, weekDay, hourlyInterval);
+			else if ("HOURLY".equals(type))
+				noError = _sendSchduleRangeForApplicationInstances(siteApplication, "hourlyScheduleRange", beginHour, endHour, weekDay, hourlyInterval);
+			else if ("WEEKLY".equals(type))
+				noError = _sendSchduleRangeForApplicationInstances(siteApplication, "weeklyScheduleRange", beginHour, endHour, weekDay, hourlyInterval);
+			else
+				noError = false;
+		}
+		
+		return noError;
+	}
+	
+//	http://monitor.host:port/cgi-bin/WebObjects/JavaMonitor.woa/admin/scheduleType?type=app&name=AjaxExample&scheduleType=DAILY
+//	http://monitor.host:port/cgi-bin/WebObjects/JavaMonitor.woa/admin/scheduleType?type=app&name=AjaxExample&scheduleType=HOURLY
+//	http://monitor.host:port/cgi-bin/WebObjects/JavaMonitor.woa/admin/scheduleType?type=app&name=AjaxExample&scheduleType=WEEKLY
+
+	private boolean _sendScheduleTypeForApplicationInstances(SiteApplication siteApplication, String type) {
+		boolean noError = true;
+		
+		String theURLToGet = Application.jmDAURL;
+		theURLToGet = theURLToGet.replace(Application.jmHostMatchString, jmHost);
+		if (this.jmPort() == null || this.jmPort().isEmpty()) 			theURLToGet = theURLToGet.replace(Application.jmPortMatchString, "80");
+		else 															theURLToGet = theURLToGet.replace(Application.jmPortMatchString, jmPort);
+		if (this.jmPassword() == null || this.jmPassword().isEmpty())	theURLToGet = theURLToGet.replace(Application.jmPasswordMatchString, "");
+		else															theURLToGet = theURLToGet.replace(Application.jmPasswordMatchString, jmPassword);
+		theURLToGet = theURLToGet.replace(Application.jmDirectActionMatchString, "scheduleType");
+		theURLToGet = theURLToGet + "type=app&name="+siteApplication.name();
+		
+		theURLToGet = theURLToGet + "&scheduleType="+type;
+
+		log.debug("URL: " + theURLToGet);
+
+		WebPageFromURL webPageFromURL = new WebPageFromURL(theURLToGet, "GET", null);
+		String jmResults = webPageFromURL.content;
+
+		log.debug("Results: " + jmResults);
+		if (!jmResults.contains("OK")) 
+			noError = false;
+
+		if (!noError) log.info("Direct action: scheduleType failed");
+
+		return noError;
+	}
+	
+//	http://monitor.host:port/cgi-bin/WebObjects/JavaMonitor.woa/admin/dailyScheduleRange?type=app&name=AjaxExample&hourBegin=1&hourEnd=9
+//	http://monitor.host:port/cgi-bin/WebObjects/JavaMonitor.woa/admin/hourlyScheduleRange?type=app&name=AjaxExample&hourBegin=1&hourEnd=9&interval=6
+//	http://monitor.host:port/cgi-bin/WebObjects/JavaMonitor.woa/admin/weeklyScheduleRange?type=app&name=AjaxExample&hourBegin=1&hourEnd=9&weekDay=1
+
+	private boolean _sendSchduleRangeForApplicationInstances(SiteApplication siteApplication, String directAction, String beginHour, String endHour, int weekDay, String hourlyInterval) {
+		boolean noError = true;
+		
+		String theURLToGet = Application.jmDAURL;
+		theURLToGet = theURLToGet.replace(Application.jmHostMatchString, jmHost);
+		if (this.jmPort() == null || this.jmPort().isEmpty()) 			theURLToGet = theURLToGet.replace(Application.jmPortMatchString, "80");
+		else 															theURLToGet = theURLToGet.replace(Application.jmPortMatchString, jmPort);
+		if (this.jmPassword() == null || this.jmPassword().isEmpty())	theURLToGet = theURLToGet.replace(Application.jmPasswordMatchString, "");
+		else															theURLToGet = theURLToGet.replace(Application.jmPasswordMatchString, jmPassword);
+		theURLToGet = theURLToGet.replace(Application.jmDirectActionMatchString, directAction);
+		theURLToGet = theURLToGet + "type=app&name="+siteApplication.name();
+		
+		theURLToGet = theURLToGet + "&hourBegin="+beginHour;
+		theURLToGet = theURLToGet + "&hourEnd="+endHour;
+		if ("hourlyScheduleRange".equals(directAction))
+			theURLToGet = theURLToGet + "&interval="+hourlyInterval;
+		if ("weeklyScheduleRange".equals(directAction))
+			theURLToGet = theURLToGet + "&weekDay="+weekDay;
+
+		log.debug("URL: " + theURLToGet);
+
+		WebPageFromURL webPageFromURL = new WebPageFromURL(theURLToGet, "GET", null);
+		String jmResults = webPageFromURL.content;
+
+		log.debug("Results: " + jmResults);
+		if (!jmResults.contains("OK")) 
+			noError = false;
+
+		if (!noError) log.info("Direct action: " + directAction + " failed");
+
+		return noError;
+	}
+
+	// --------------------------------------------------------------------------------
+
+	
 	public void setHosts(NSArray<SiteHost> newHosts) {
 		hosts = new NSMutableArray<SiteHost>(newHosts);
 		log.debug("Added new hosts to " + jmHost + ": " + hosts.toString());

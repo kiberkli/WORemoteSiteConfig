@@ -1,4 +1,4 @@
-// $LastChangedRevision: 5810 $ DO NOT EDIT.  Make changes to TimePointApplication.java instead.
+// $LastChangedRevision$ DO NOT EDIT.  Make changes to TimePointApplication.java instead.
 package com.dyned.woremotesiteconfig.eom;
 
 import com.webobjects.eoaccess.*;

@@ -57,6 +57,12 @@ public class StoredApp extends _StoredApp {
 	public void awakeFromInsertion(EOEditingContext ec) {
 		super.awakeFromInsertion(ec);
 		this.setInstanceInterleave(1);
+
+		this.setScheduleBeginHour("01");
+		this.setScheduleEndHour("06");
+		this.setScheduleHourlyInterval("12");
+		this.setScheduleType("DAILY");
+		this.setScheduleWeekDay("Sunday");
 	}
 
 	public void awakeFromFetch(EOEditingContext ec) {

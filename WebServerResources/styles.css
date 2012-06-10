@@ -158,7 +158,7 @@ input.numberField {
 input.standardButton {
 	-moz-border-radius: 6px;
 	-webkit-border-radius: 6px;
-	display: block;
+	display: inline;
 	padding: 4px 6px;
 	border: 1px solid #666;
 	text-decoration: none;
@@ -166,7 +166,7 @@ input.standardButton {
 	font-size: 100%;
 	background-color: #999;
 	text-align: center;
-	width: 100%;
+	width: 170px;
 }
 
 textarea.code {
@@ -189,7 +189,7 @@ textarea.code {
 .Button {
 	-moz-border-radius: 6px;
 	-webkit-border-radius: 6px;
-	display: block;
+	display: inline-block;
 	padding: 4px 6px;
 	border: 1px solid #666;
 	text-decoration: none;
@@ -197,6 +197,7 @@ textarea.code {
 	font-size: 100%;
 	background-color: #999;
 	text-align: center;
+	width: 156px;
 }
 
 .DeleteButton {

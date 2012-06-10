@@ -19,7 +19,37 @@
             name = jsonString; 
             prototypeName = longText; 
         }, 
-        {allowsNull = N; columnName = name; name = name; prototypeName = shortString; }
+        {allowsNull = N; columnName = name; name = name; prototypeName = shortString; }, 
+        {
+            allowsNull = Y; 
+            columnName = scheduleBeginHour; 
+            name = scheduleBeginHour; 
+            prototypeName = shortString; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = scheduleEndHour; 
+            name = scheduleEndHour; 
+            prototypeName = shortString; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = scheduleHourlyInterval; 
+            name = scheduleHourlyInterval; 
+            prototypeName = shortString; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = scheduleType; 
+            name = scheduleType; 
+            prototypeName = shortString; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = scheduleWeekDay; 
+            name = scheduleWeekDay; 
+            prototypeName = shortString; 
+        }
     ); 
     attributesUsedForLocking = (id); 
     className = "com.dyned.woremotesiteconfig.eom.StoredApp"; 
@@ -27,6 +57,11 @@
         instanceInterleave, 
         jsonString, 
         name, 
+        scheduleBeginHour, 
+        scheduleEndHour, 
+        scheduleHourlyInterval, 
+        scheduleType, 
+        scheduleWeekDay, 
         storedInstanceHosts, 
         storedSite, 
         timePointApplications
