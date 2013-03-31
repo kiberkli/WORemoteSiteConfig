@@ -477,7 +477,7 @@ public class Site {
 		String jmResults = webPageFromURL.content;
 
 		log.debug("Results: " + jmResults);
-		if (!jmResults.contains("OK")) 
+		if (jmResults == null || !jmResults.contains("OK")) 
 			noError = false;
 
 		if (!noError) log.info("Direct action: " + directAction + " failed");
@@ -530,7 +530,7 @@ public class Site {
 		String jmResults = webPageFromURL.content;
 
 		log.debug("Results: " + jmResults);
-		if (!jmResults.contains("OK")) 
+		if (jmResults == null || !jmResults.contains("OK")) 
 			noError = false;
 
 		if (!noError) log.info("Direct action: scheduleType failed");
@@ -567,7 +567,7 @@ public class Site {
 		String jmResults = webPageFromURL.content;
 
 		log.debug("Results: " + jmResults);
-		if (!jmResults.contains("OK")) 
+		if (jmResults == null || !jmResults.contains("OK")) 
 			noError = false;
 
 		if (!noError) log.info("Direct action: " + directAction + " failed");
