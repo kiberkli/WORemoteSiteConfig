@@ -103,7 +103,7 @@ SaveStoredSite : WOSubmitButton {
 
 CancelStoredSite : WOSubmitButton {
 	action = cancelStoredSite;
-	value ="Cancle";
+	value ="Cancel";
 }
 
 EditStoredSite : WOHyperlink {
