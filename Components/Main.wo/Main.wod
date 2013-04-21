@@ -134,3 +134,15 @@ SiteMonitorLink : WOHyperlink {
 	disabled = storedSiteItemInList.notAvailable;
 	target = "_blank";
 }
+
+serverTypes : WOPopUpButton {
+  list = serverTypesList;
+  item = serverTypeItem;
+  selection = storedSiteForEditing.serverType;
+}
+
+tdGenericContainer : WOGenericContainer {
+	elementName = "td";
+  	class=serverTypeClass;
+  	title=storedSiteItemInList.serverType.description;
+}
