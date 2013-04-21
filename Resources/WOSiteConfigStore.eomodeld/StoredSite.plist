@@ -20,11 +20,19 @@
             prototypeName = shortString; 
         }, 
         {allowsNull = Y; columnName = name; name = name; prototypeName = longText; }, 
-        {allowsNull = Y; columnName = notes; name = notes; prototypeName = longText; }
+        {allowsNull = Y; columnName = notes; name = notes; prototypeName = longText; }, 
+        {
+            allowsNull = Y; 
+            columnName = serverType; 
+            name = serverType; 
+            prototypeName = javaEnum; 
+            valueClassName = "com.dyned.woremotesiteconfig.ServerType"; 
+            valueType = S; 
+        }
     ); 
     attributesUsedForLocking = (id); 
     className = "com.dyned.woremotesiteconfig.eom.StoredSite"; 
-    classProperties = (jmHost, jmPassword, jmPort, name, notes, storedApps, timePoints); 
+    classProperties = (jmHost, jmPassword, jmPort, name, notes, serverType, storedApps, timePoints); 
     externalName = StoredSite; 
     fetchSpecificationDictionary = {}; 
     name = StoredSite; 
@@ -47,4 +55,9 @@
             name = timePoints; 
         }
     ); 
+    userInfo = {
+        "_EntityModeler" = {
+            documentation = "Help define the use of a peculiar host configuration as:\n<ul>\n<li>dev: Server used typically by the developers.</li>\n<li>stage: Server used typically for testing by the users or QA.</li>\n<li>prod: Production server, use with care.</li>\n</ul>"; 
+        }; 
+    }; 
 }

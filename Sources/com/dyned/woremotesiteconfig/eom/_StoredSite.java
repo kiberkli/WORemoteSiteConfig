@@ -18,6 +18,7 @@ public abstract class _StoredSite extends  EOGenericRecord {
 	public static final String JM_PORT_KEY = "jmPort";
 	public static final String NAME_KEY = "name";
 	public static final String NOTES_KEY = "notes";
+	public static final String SERVER_TYPE_KEY = "serverType";
 
 	// Relationships
 	public static final String STORED_APPS_KEY = "storedApps";
@@ -86,6 +87,17 @@ public abstract class _StoredSite extends  EOGenericRecord {
     	_StoredSite.LOG.debug( "updating notes from " + notes() + " to " + value);
     }
     takeStoredValueForKey(value, "notes");
+  }
+
+  public com.dyned.woremotesiteconfig.ServerType serverType() {
+    return (com.dyned.woremotesiteconfig.ServerType) storedValueForKey("serverType");
+  }
+
+  public void setServerType(com.dyned.woremotesiteconfig.ServerType value) {
+    if (_StoredSite.LOG.isDebugEnabled()) {
+    	_StoredSite.LOG.debug( "updating serverType from " + serverType() + " to " + value);
+    }
+    takeStoredValueForKey(value, "serverType");
   }
 
   public NSArray<com.dyned.woremotesiteconfig.eom.StoredApp> storedApps() {
