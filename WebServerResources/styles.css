@@ -111,6 +111,18 @@ table tr {
 	background-color: #ffffff;
 }
 
+table td.dev {
+	background-color: #99FF66;
+}
+
+table td.stage {
+	background-color: #ffff66;
+}
+
+table td.prod {
+	background-color: #ff0000;
+}
+
 table tr th, table tr td {
 	text-align: left;
 	vertical-align: middle;
