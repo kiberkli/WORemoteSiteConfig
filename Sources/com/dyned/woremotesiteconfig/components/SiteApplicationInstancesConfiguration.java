@@ -90,7 +90,7 @@ public class SiteApplicationInstancesConfiguration extends ERXComponent {
 	public String hourOfDayItemInList1;
 	public String hourOfDayItemInList2;
 
-	public NSArray<String> intervals = new NSArray<String>("1", "2", "3", "4", "6", "8", "12");
+	public NSArray<String> intervals = new NSArray<String>("1", "2", "3", "4", "5", "6", "8", "12");
 	public String intervalItemInList;
 
 	public SiteApplicationInstancesConfiguration(WOContext context) {
