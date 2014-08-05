@@ -103,7 +103,7 @@ SaveStoredSite : WOSubmitButton {
 
 CancelStoredSite : WOSubmitButton {
 	action = cancelStoredSite;
-	value ="Cancle";
+	value ="Cancel";
 }
 
 EditStoredSite : WOHyperlink {
@@ -133,4 +133,16 @@ SiteMonitorLink : WOHyperlink {
 	href = storedSiteItemInList.monitorURL;
 	disabled = storedSiteItemInList.notAvailable;
 	target = "_blank";
+}
+
+serverTypes : WOPopUpButton {
+  list = serverTypesList;
+  item = serverTypeItem;
+  selection = storedSiteForEditing.serverType;
+}
+
+tdGenericContainer : WOGenericContainer {
+	elementName = "td";
+  	class=serverTypeClass;
+  	title=storedSiteItemInList.serverType.description;
 }
